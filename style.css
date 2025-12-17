@@ -1,123 +1,104 @@
 body {
-  background: #222;
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-  font-family: Arial, sans-serif;
+  background:#222;
+  display:flex;
+  justify-content:center;
+  margin-top:40px;
+  font-family:Arial;
 }
 
 #gameContainer {
-  text-align: center;
+  width:800px;
+}
+
+/* HEADER */
+#header {
+  position:relative;
+  height:50px;
 }
 
 #title {
-  position: absolute;
-  top: 12px; /* altura dentro del cielo */
-  left: 50%;
-  transform: translateX(-50%);
-  color: hotpink;
-  font-size: 32px;
-  z-index: 10;
-  pointer-events: none; /* no estorba clicks */
+  color:hotpink;
+  text-align:center;
+  margin:0;
 }
 
+#score {
+  position:absolute;
+  right:0;
+  top:10px;
+  color:white;
+  font-size:18px;
+}
+
+/* GAME */
 #game {
-  position: relative;
-  width: 800px;
-  height: 300px;
-  background: linear-gradient(#7ec8ff, #ccefff);
-  border-radius: 10px;
-  overflow: hidden;
+  position:relative;
+  width:800px;
+  height:300px;
+  background:linear-gradient(#7ec8ff,#ccefff);
+  border-radius:12px;
+  overflow:hidden;
 }
 
-/* suelo */
+/* SUELO */
 #game::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  background: #0b6623;
-  z-index: 1;
+  content:"";
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:40px;
+  background:#0b6623;
 }
 
-/* jugador */
+/* PLAYER */
 #player {
-  position: absolute;
-  bottom: 40px;
-  left: 80px;
-  width: 90px;
-  z-index: 2;
+  position:absolute;
+  bottom:40px;
+  left:80px;
+  width:90px;
+  z-index:5;
 }
 
-/* sushi */
-#sushi {
-  position: absolute;
-  bottom: 40px;
-  right: -120px;
-  width: 80px;
-  z-index: 2;
+/* OBSTACLES */
+#sushi,
+#obstacle2 {
+  position:absolute;
+  bottom:40px;
+  right:-120px;
+  width:80px;
+  display:none;
 }
 
-/* pantallas */
+/* SCREENS */
 .screen {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:10;
 }
 
-.hidden {
-  display: none;
-}
+.hidden { display:none; }
 
 button {
-  padding: 12px 24px;
-  font-size: 18px;
-  cursor: pointer;
-  border-radius: 6px;
-  border: none;
+  padding:12px 28px;
+  font-size:18px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
 }
 
-/* salto */
+/* JUMP */
 .jump {
-  animation: jump 0.7s ease-out;
+  animation:jump .7s ease-out;
 }
 
 @keyframes jump {
-  0% {
-    bottom: 40px;
-  }
-  50% {
-    bottom: 220px;
-  }
-  100% {
-    bottom: 40px;
-  }
+  0% { bottom:40px; }
+  50% { bottom:190px; }
+  100% { bottom:40px; }
 }
 
-#startScreen,
-#gameOverScreen {
-  z-index: 20;
-}
-#obstacle2 {
-  position: absolute;
-  bottom: 40px;
-  right: -120px;
-  width: 80px;
-  display: none; /* inicia oculto */
-}
-#score {
-  position: absolute;
-  top: 45px;
-  right: 30px;
-  font-size: 22px;
-  font-weight: bold;
-  color: white;
-  z-index: 10;
-}
