@@ -40,8 +40,23 @@ function startGame() {
 }
 
 /* SALTO */
+// Desktop: espacio
 document.addEventListener("keydown", (e) => {
   if (e.code === "Space" && !isJumping && gameRunning) {
+    jump();
+  }
+});
+
+// Móvil: tocar la pantalla
+document.addEventListener("touchstart", (e) => {
+  if (!isJumping && gameRunning) {
+    jump();
+  }
+});
+
+// Opcional: clic en desktop
+document.addEventListener("click", (e) => {
+  if (!isJumping && gameRunning) {
     jump();
   }
 });
@@ -103,7 +118,6 @@ function checkCollision() {
   const o = currentObstacle.getBoundingClientRect();
 
   const horizontalHit = p.right > o.left + 15 && p.left < o.right - 15;
-
   const verticalHit = p.bottom > o.top + 15 && p.top < o.bottom;
 
   if (horizontalHit && verticalHit && !isJumping) {
