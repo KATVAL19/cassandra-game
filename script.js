@@ -131,3 +131,4 @@ function endGame() {
   clearInterval(collisionInterval);
   gameOverScreen.classList.remove("hidden");
 }
+
