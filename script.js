@@ -9,8 +9,6 @@ const gameOverScreen = document.getElementById("gameOverScreen");
 const startBtn = document.getElementById("startBtn");
 const restartBtn = document.getElementById("restartBtn");
 
-const gameContainer = document.getElementById("game"); // Contenedor visible del juego
-
 let gameRunning = false;
 let obstacleInterval = null;
 let collisionInterval = null;
@@ -42,23 +40,22 @@ function startGame() {
 }
 
 /* SALTO */
-// Desktop: teclado espacio
+// Desktop: espacio
 document.addEventListener("keydown", (e) => {
   if (e.code === "Space" && !isJumping && gameRunning) {
     jump();
   }
 });
 
-// Móvil: tocar la pantalla en el contenedor del juego
-gameContainer.addEventListener("touchstart", (e) => {
-  e.preventDefault(); // evita scroll en Safari
+// Móvil: tocar la pantalla
+document.addEventListener("touchstart", (e) => {
   if (!isJumping && gameRunning) {
     jump();
   }
 });
 
-// Desktop: clic opcional
-gameContainer.addEventListener("click", (e) => {
+// Opcional: clic en desktop
+document.addEventListener("click", (e) => {
   if (!isJumping && gameRunning) {
     jump();
   }
@@ -98,6 +95,7 @@ function moveObstacle() {
     position += 6;
     currentObstacle.style.right = position + "px";
 
+    // 👉 SCORE cuando lo PASAS
     const obstacleRect = currentObstacle.getBoundingClientRect();
     const playerRect = player.getBoundingClientRect();
 
@@ -133,6 +131,5 @@ function endGame() {
   clearInterval(collisionInterval);
   gameOverScreen.classList.remove("hidden");
 }
-
 
 
